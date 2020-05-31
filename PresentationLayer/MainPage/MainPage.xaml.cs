@@ -1,4 +1,5 @@
 ﻿using DocumentFormat.OpenXml.Packaging;
+using SpreadSheet = DocumentFormat.OpenXml.Spreadsheet;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -59,7 +60,19 @@ namespace TinkoffCurrency
             // Open the document for editing.
             using (SpreadsheetDocument spreadsheetDocument = SpreadsheetDocument.Open(file.Path, false))
             {
-                // Code removed here.
+                WorkbookPart workbookPart = spreadsheetDocument.WorkbookPart;
+                WorksheetPart worksheetPart = workbookPart.WorksheetParts.First();
+                var sheetData = worksheetPart.Worksheet.Elements<SpreadSheet.SheetData>().First();
+                string text;
+                foreach (SpreadSheet.Row r in sheetData.Elements<SpreadSheet.Row>())
+                {
+                    foreach (SpreadSheet.Cell c in r.Elements<SpreadSheet.Cell>())
+                    {
+                        text = c.CellValue.Text;
+                        Console.Write(text + " ");
+                        
+                    }
+                }
             }
         }
     }
