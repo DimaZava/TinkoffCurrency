@@ -10,14 +10,14 @@ namespace Operation
 			Credit
 		}
 
-		static String OperationCode = "{VO01010}";
+		static string OperationCode = "{VO01010}";
 
-		String TransactionID;
+		string TransactionID;
 		FinanceType Type;
 		DateTime TransactionDate;
-		String Currency;
-		Decimal Value;
-		Decimal ChangeRate;
+		string Currency;
+		decimal Value;
+		decimal ChangeRate;
 
 		public Item(
 			string transactionID,
