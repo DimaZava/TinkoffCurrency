@@ -10,8 +10,6 @@ namespace Operation
 			Credit
 		}
 
-		static string OperationCode = "{VO01010}";
-
 		string TransactionID;
 		FinanceType Type;
 		DateTime TransactionDate;
