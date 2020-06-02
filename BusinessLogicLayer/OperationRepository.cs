@@ -7,22 +7,35 @@ namespace Operation
     using System;
     using System.Collections.Generic;
     using System.Text.RegularExpressions;
-    using static Operation.Item;
+    using static Operation.OperationItem;
     using SpreadSheet = DocumentFormat.OpenXml.Spreadsheet;
 
+    /// <summary>
+    /// Repository containing OperationItems and corresponding operations.
+    /// </summary>
     public sealed class OperationRepository
     {
+        /// <summary>
+        /// Gets saved operations list.
+        /// </summary>
+        internal List<OperationItem> Operations { get; private set; } = new List<OperationItem>();
+
         private static readonly Lazy<OperationRepository> Lazy =
             new Lazy<OperationRepository>(() => new OperationRepository());
 
+        /// <summary>
+        /// Gets OperationRepository Singleton.
+        /// </summary>
         public static OperationRepository Instance => Lazy.Value;
-
-        private List<Item> operations = new List<Item>();
 
         private OperationRepository()
         {
         }
 
+        /// <summary>
+        /// Add operation to repository using row.
+        /// </summary>
+        /// <param name="row">Excel row</param>
         public void AddOperationFrom(SpreadSheet.Row row)
         {
             //new Item("id", FinanceType.Debit, new DateTime(), "EUR", new Decimal(22.2), new Decimal(55.5));
